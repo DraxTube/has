@@ -3,7 +3,7 @@
  * PSP2 headers are ONLY included here, not in the .h
  */
 #include "../third_party/vita_audio.h"
-#include <psp2/audio.h>
+#include <psp2/audioout.h>
 #include <psp2/kernel/processmgr.h>
 #include <psp2/kernel/threadmgr.h>
 #include <psp2/io/fcntl.h>
