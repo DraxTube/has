@@ -28,6 +28,8 @@
 #include <psp2/sysmodule.h>
 #include <vitaGL.h>
 
+#include "../third_party/vita_audio.h"
+
 // ---------------------------------------------------------------------------
 //  Type aliases
 // ---------------------------------------------------------------------------
@@ -50,7 +52,7 @@ inline float rY(float y) { return y * (VITA_SCREEN_H / 600.0f); }
 //  Random
 // ---------------------------------------------------------------------------
 namespace BB {
-    static std::mt19937 rng{ static_cast<uint32_t>(sceKernelGetProcessTime()) };
+    static std::mt19937 rng{ static_cast<uint32_t>(sceKernelGetProcessTimeLow()) };
 
     inline void SeedRnd(int seed) { rng.seed(seed); }
 
@@ -193,7 +195,6 @@ namespace BB {
     // ---------------------------------------------------------------------------
     //  Audio – real SceAudio implementation via VitaAudioEngine
     // ---------------------------------------------------------------------------
-#include "../third_party/vita_audio.h"
 
     struct BBSound {
         VitaSound* data    = nullptr;
