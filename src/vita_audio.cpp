@@ -82,11 +82,11 @@ void VitaAudioEngine::init() {
     if (s_impl) return;
     s_impl = new Impl();
     s_impl->port = sceAudioOutOpenPort(SCE_AUDIO_OUT_PORT_TYPE_MAIN,
-        AUDIO_GRAIN, AUDIO_FREQ, SCE_AUDIO_OUT_PARAM_FORMAT_S16_STEREO);
+        AUDIO_GRAIN, AUDIO_FREQ, SCE_AUDIO_OUT_MODE_STEREO);
     if (s_impl->port < 0) return;
     int vol[2] = {SCE_AUDIO_VOLUME_0DB, SCE_AUDIO_VOLUME_0DB};
     sceAudioOutSetVolume(s_impl->port,
-        SCE_AUDIO_VOLUME_FLAG_L_CH | SCE_AUDIO_VOLUME_FLAG_R_CH, vol);
+        (SceAudioOutChannelFlag)(SCE_AUDIO_VOLUME_FLAG_L_CH | SCE_AUDIO_VOLUME_FLAG_R_CH), vol);
     s_impl->mix_buf = new int16_t[AUDIO_GRAIN * 2];
     s_impl->running = true;
     s_impl->thread = sceKernelCreateThread("vita_audio",
