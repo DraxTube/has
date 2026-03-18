@@ -21,7 +21,7 @@
 #include <psp2/ctrl.h>
 #include <psp2/display.h>
 #include <psp2/kernel/processmgr.h>
-#include <psp2/audio.h>
+#include <psp2/audioout.h>
 #include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
 #include <psp2/power.h>
