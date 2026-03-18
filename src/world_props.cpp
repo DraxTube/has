@@ -35,7 +35,7 @@ std::array<int,   MAX_KITS> kitType {}, kitState{};
 
 std::array<int,MAX_TRAYS> trayState{}, trayOldState{};
 
-std::array<Handle,11> tScreen{};
+std::array<GLuint,11> tScreen{};
 std::array<GLuint,11> tTray    {};
 GLuint tMachine=0, tPistol=0;
 std::array<GLuint,4> tEyes    {};
@@ -175,37 +175,6 @@ int BedTaken(int bed) {
     return value;
 }
 
-int PhoneProximity(int cyc) {
-    int value = 0;
-    if (gamLocation[slot] == 9) {
-        for (int v = 1; v <= 4; ++v) {
-            Handle limb = FindChild(world, "Pad" + Dig(v, 10));
-            if (limb) {
-                if (pX[cyc] > EntityX(limb, 1) - 20 && pX[cyc] < EntityX(limb, 1) + 20 &&
-                    pZ[cyc] > EntityZ(limb, 1) - 15 && pZ[cyc] < EntityZ(limb, 1) + 15) {
-                    value = v;
-                }
-            }
-        }
-    }
-    return value;
-}
-
-int PhoneTaken(int phone) {
-    int value = 0;
-    for (int v = 1; v <= no_plays; ++v) {
-        if (pPhone[v] == phone) value = 1;
-    }
-    return value;
-}
-
-int OnComputer(int cyc) {
-    int value = 0;
-    if (gamLocation[slot] == 4 && pSeat[cyc] == 5) value = 1;
-    if (gamLocation[slot] == 6 && pSeat[cyc] == 5) value = 1;
-    if (gamLocation[slot] == 9 && pSeat[cyc] == 7) value = 1;
-    return value;
-}
 
 int NearBasket(int cyc) {
     int value = 0;
